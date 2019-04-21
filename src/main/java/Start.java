@@ -21,7 +21,18 @@ import com.pi4j.io.gpio.event.PinEventType;
 public class Start {
 
     public static void main (String [ ] args) {
-        System.out.print("Hola mundo");
+        final GpioController gpio = GpioFactory.getInstance();
+        public int x = 0;
+
+        GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_25, "MyButton", PinPullResistance.PULL_DOWN);
+        GpioPinDigitalOutput myLed = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_16, "My LED",PinState.LOW);  
+                                                                     
+        for(x;x>0;x++){
+            if(myButton.getState()){
+                myLed.pulse(5000);
+            }
+        }
+        
     }
 
 }
