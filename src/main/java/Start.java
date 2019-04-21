@@ -5,8 +5,9 @@ import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.PinPullResistance;
 import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
+import controller.GpioUsageExampleListener;
 
-public class Start {
+public class Start  {
 
     public static void main (String [ ] args) {
         final GpioController gpio = GpioFactory.getInstance();
@@ -15,11 +16,14 @@ public class Start {
         GpioPinDigitalOutput myLed = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_16, "My LED",PinState.LOW);  
                                                                      
         for(int x =1;x>0;x++){
-            
+            /*
             if(myButton.getState().isHigh()){
                 System.out.print("Hola");
                 myLed.pulse(5000);
             }
+            */
+            myButton.addListener(new GpioUsageExampleListener());
+
         }
         
     }
