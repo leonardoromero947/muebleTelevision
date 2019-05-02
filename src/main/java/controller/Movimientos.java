@@ -61,6 +61,7 @@ public class Movimientos {
                 }
             }else{
                 System.out.print("DETENER PROGRAMA");
+                gpio.shutdown();
             }
         }
     }
