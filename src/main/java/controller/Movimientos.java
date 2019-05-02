@@ -37,7 +37,7 @@ public class Movimientos {
     GpioPinDigitalInput i1A_2A = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, "SEGURO", PinPullResistance.PULL_DOWN);
     //GpioPinDigitalInput i2A = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, "SEGURO", PinPullResistance.PULL_DOWN);
 
-    GpioPinDigitalInput i2D_1D = gpio.provisionDigitalInputPin(RaspiPin.GPIO_13, "SEGURO", PinPullResistance.PULL_DOWN);
+    GpioPinDigitalInput i1D_2D = gpio.provisionDigitalInputPin(RaspiPin.GPIO_13, "SEGURO", PinPullResistance.PULL_DOWN);
     //GpioPinDigitalInput i1D = gpio.provisionDigitalInputPin(RaspiPin.GPIO_13, "SEGURO", PinPullResistance.PULL_DOWN);
 
     GpioPinDigitalInput i1E_2E = gpio.provisionDigitalInputPin(RaspiPin.GPIO_14, "SEGURO", PinPullResistance.PULL_DOWN);
@@ -86,8 +86,8 @@ public class Movimientos {
 
     public boolean finalizar(){
         boolean status_seguro = boton_seguro.isHigh();
-        boolean status_1h = i1H.isHigh();
-        boolean status_1d = i1D.isHigh();
+        boolean status_1h = i1D_2D.isHigh();
+        boolean status_1d = i1D_2D.isHigh();
         if(status_seguro && status_1h && status_1d){
             detenerMotores();
             eterno = false;
