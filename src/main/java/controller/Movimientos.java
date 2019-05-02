@@ -34,18 +34,22 @@ public class Movimientos {
     GpioPinDigitalInput boton_accion = gpio.provisionDigitalInputPin(RaspiPin.GPIO_25, "OPEN/CLOSE", PinPullResistance.PULL_DOWN);
 
     //SWITCHS INDICADORES
-    GpioPinDigitalInput i1A= gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, "SEGURO", PinPullResistance.PULL_DOWN);
+    GpioPinDigitalInput i1A_2A = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, "SEGURO", PinPullResistance.PULL_DOWN);
+    //GpioPinDigitalInput i2A = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, "SEGURO", PinPullResistance.PULL_DOWN);
+
+    GpioPinDigitalInput i2D_1D = gpio.provisionDigitalInputPin(RaspiPin.GPIO_13, "SEGURO", PinPullResistance.PULL_DOWN);
+    //GpioPinDigitalInput i1D = gpio.provisionDigitalInputPin(RaspiPin.GPIO_13, "SEGURO", PinPullResistance.PULL_DOWN);
+
+    GpioPinDigitalInput i1E_2E = gpio.provisionDigitalInputPin(RaspiPin.GPIO_14, "SEGURO", PinPullResistance.PULL_DOWN);
+    //GpioPinDigitalInput i2E = gpio.provisionDigitalInputPin(RaspiPin.GPIO_14, "SEGURO", PinPullResistance.PULL_DOWN);
+
     GpioPinDigitalInput i1B = gpio.provisionDigitalInputPin(RaspiPin.GPIO_03, "SEGURO", PinPullResistance.PULL_DOWN);
     GpioPinDigitalInput i1C = gpio.provisionDigitalInputPin(RaspiPin.GPIO_12, "SEGURO", PinPullResistance.PULL_DOWN);
-    GpioPinDigitalInput i2A = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, "SEGURO", PinPullResistance.PULL_DOWN);
-    GpioPinDigitalInput i2D = gpio.provisionDigitalInputPin(RaspiPin.GPIO_13, "SEGURO", PinPullResistance.PULL_DOWN);
-    GpioPinDigitalInput i1D = gpio.provisionDigitalInputPin(RaspiPin.GPIO_13, "SEGURO", PinPullResistance.PULL_DOWN);
-    GpioPinDigitalInput i1E = gpio.provisionDigitalInputPin(RaspiPin.GPIO_14, "SEGURO", PinPullResistance.PULL_DOWN);
     GpioPinDigitalInput i1F = gpio.provisionDigitalInputPin(RaspiPin.GPIO_21, "SEGURO", PinPullResistance.PULL_DOWN);
     GpioPinDigitalInput i1G = gpio.provisionDigitalInputPin(RaspiPin.GPIO_22, "SEGURO", PinPullResistance.PULL_DOWN);
-    GpioPinDigitalInput i2E = gpio.provisionDigitalInputPin(RaspiPin.GPIO_14, "SEGURO", PinPullResistance.PULL_DOWN);
-    GpioPinDigitalInput i2H = gpio.provisionDigitalInputPin(RaspiPin.GPIO_23, "SEGURO", PinPullResistance.PULL_DOWN);
-    GpioPinDigitalInput i1H = gpio.provisionDigitalInputPin(RaspiPin.GPIO_23, "SEGURO", PinPullResistance.PULL_DOWN);
+
+    //GpioPinDigitalInput i2H = gpio.provisionDigitalInputPin(RaspiPin.GPIO_23, "SEGURO", PinPullResistance.PULL_DOWN);
+    GpioPinDigitalInput i1H_2H = gpio.provisionDigitalInputPin(RaspiPin.GPIO_23, "SEGURO", PinPullResistance.PULL_DOWN);
 
 
     public void prueba(){
