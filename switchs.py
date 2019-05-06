@@ -1,10 +1,11 @@
 from gpiozero import Button
 from time import sleep
 
-class Switch:
+class Switch(object):
 
-    #INSTANCIA DE SENSORES
+    #ATRIBUTOS
     btn_seguro = Button(19)
+    btn_accionador = Button(26)
     btn_1A = Button(27)
     btn_1B = Button(22)
     btn_1C = Button(10)
@@ -31,6 +32,8 @@ class Switch:
         self.status_2D()
         self.status_2E()
         self.status_2H()
+        self.status_seguro()
+        self.status_accionador()
 
     def status_1A(self):
         if self.btn_1A.is_active:
@@ -126,6 +129,22 @@ class Switch:
             sleep(2)
         else:
             print("2H Liberado")
+            sleep(2)
+
+    def status_seguro(self):
+        if self.btn_seguro.is_active:
+            print("SEGURO Presionado")
+            sleep(2)
+        else:
+            print("SEGURO Liberado")
+            sleep(2)
+
+    def status_accionador(self):
+        if self.btn_accionador.is_active:
+            print("Inicio Presionado")
+            sleep(2)
+        else:
+            print("Inicio Liberado")
             sleep(2)
 
     def say_hello(self):
