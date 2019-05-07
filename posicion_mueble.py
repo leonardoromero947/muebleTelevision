@@ -176,6 +176,7 @@ class Posicion_Mueble(object):
         # 11 MUEBLE ::: | | * |
         # 12 MUEBLE ::: | _ | |
         # 13 MUEBLE ::: _ _ _ |
+        # 00 MUEBLE ::: ? ? ? ?
         if((self.poste1_cerrada() is True) and (self.puerta1_cerrada() is True) and
         (self.puerta2_cerrada() is True) and (self.poste2_cerrada() is True)):
             self.opcion_correcta(1)
@@ -229,7 +230,7 @@ class Posicion_Mueble(object):
             self.opcion_correcta(13)
             print (" _ _ _ |")
         if(self.id_posicion == 0):
-            self.opcion_correcta(14)
+            self.opcion_correcta(0)
             print (" ? ? ? ?")
         return self.id_posicion
 
