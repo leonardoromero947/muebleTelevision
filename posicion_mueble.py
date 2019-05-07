@@ -8,6 +8,7 @@ class Posicion_Mueble(object):
     def log_activo(self, seleccion):
         self.sts.activar_log = False
         self.activar_log_request = seleccion
+        self.id_posicion = 0
 
     def puerta1_abierta(self):
         # 1A Falso
@@ -155,8 +156,14 @@ class Posicion_Mueble(object):
         self.posicion_partes_mueble()
         self.activar_log = False
 
+    def opcion_correcta(self,numero):
+        print ("MUEBLE "+`numero`)
+        self.diagrama()
+        print (" _ _ _ _")
+        self.log_switch_activar()
+        self.id_posicion = numero
+
     def consultar_status_mueble(self):
-        numero_posicion = 0
         # 01 MUEBLE ::: _ _ _ _
         # 02 MUEBLE ::: | _ _ _
         # 03 MUEBLE ::: | _ _ |
@@ -172,101 +179,46 @@ class Posicion_Mueble(object):
         # 13 MUEBLE ::: _ _ _ |
         if((self.poste1_cerrada() is True) and (self.puerta1_cerrada() is True) and
         (self.puerta2_cerrada() is True) and (self.poste2_cerrada() is True)):
-            print ("MUEBLE 01")
-            self.diagrama()
-            print (" _ _ _ _")
-            self.log_switch_activar()
-            numero_posicion = 1
+            self.opcion_correcta(1)
         if((self.poste1_abierta() is True) and (self.puerta1_cerrada() is True) and
         (self.puerta2_cerrada() is True) and (self.poste2_cerrada() is True)):
-            print ("MUEBLE 02")
-            self.diagrama()
-            print (" | _ _ _")
-            self.log_switch_activar()
-            numero_posicion = 2
+            self.opcion_correcta(2)
         if ((self.poste1_abierta() is True) and (self.puerta1_cerrada() is True) and
         (self.puerta2_cerrada() is True) and (self.poste2_abierta() is True)):
-            print ("MUEBLE 03")
-            self.diagrama()
-            print (" | _ _ |")
-            self.log_switch_activar()
-            numero_posicion = 3
+            self.opcion_correcta(3)
         if ((self.poste1_abierta() is True) and (self.puerta1_abierta() is True) and
         (self.puerta2_cerrada() is True) and (self.poste2_abierta() is True)):
-            print ("MUEBLE 04")
-            self.diagrama()
-            print (" | | _ |")
-            self.log_switch_activar()
-            numero_posicion = 4
+            self.opcion_correcta(4)
         if ((self.poste1_abierta() is True) and (self.puerta1_abierta() is True) and
         (self.puerta2_abierta() is True) and (self.poste2_abierta() is True)):
-            print ("MUEBLE 05")
-            self.diagrama()
-            print (" | | | |")
-            self.log_switch_activar()
-            numero_posicion = 5
+            self.opcion_correcta(5)
         if ((self.poste1_abierta() is True) and (self.puerta1_guardada() is True) and
         (self.puerta2_abierta() is True) and (self.poste2_abierta() is True)):
-            print ("MUEBLE 06")
-            self.diagrama()
-            print (" | * | |")
-            self.log_switch_activar()
-            numero_posicion = 6
+            self.opcion_correcta(6)
         if ((self.poste1_abierta() is True) and (self.puerta1_guardada() is True) and
         (self.puerta2_guardada() is True) and (self.poste2_abierta() is True)):
-            print ("MUEBLE 07")
-            self.diagrama()
-            print (" | * * |")
-            self.log_switch_activar()
-            numero_posicion = 7
+            self.opcion_correcta(7)
         if ((self.poste1_cerrada() is True) and (self.puerta1_guardada() is True) and
         (self.puerta2_guardada() is True) and (self.poste2_abierta() is True)):
-            print ("MUEBLE 08")
-            self.diagrama()
-            print (" _ * * |")
-            self.log_switch_activar()
-            numero_posicion = 8
+            self.opcion_correcta(8)
         if ((self.poste1_cerrada() is True) and (self.puerta1_guardada() is True) and
         (self.puerta2_guardada() is True) and (self.poste2_cerrada() is True)):
-            print ("MUEBLE 09")
-            self.diagrama()
-            print (" _ * * _")
-            self.log_switch_activar()
-            numero_posicion = 9
+            self.opcion_correcta(9)
         if ((self.poste1_abierta() is True) and (self.puerta1_guardada() is True) and
         (self.puerta2_guardada() is True) and (self.poste2_cerrada() is True)):
-            print ("MUEBLE 10")
-            self.diagrama()
-            print (" | * * _")
-            self.log_switch_activar()
-            numero_posicion = 10
+            self.opcion_correcta(10)
         if ((self.poste1_abierta() is True) and (self.puerta1_guardada() is True) and
         (self.puerta2_guardada() is True) and (self.poste2_cerrada() is True)):
-            print ("MUEBLE 11")
-            self.diagrama()
-            print (" | | * |")
-            self.log_switch_activar()
-            numero_posicion = 11
+            self.opcion_correcta(11)
         if ((self.poste1_abierta() is True) and (self.puerta1_cerrada() is True) and
         (self.puerta2_abierta() is True) and (self.poste2_abierta() is True)):
-            print ("MUEBLE 12")
-            self.diagrama()
-            print (" | _ | |")
-            self.log_switch_activar()
-            numero_posicion = 12
+            self.opcion_correcta(12)
         if ((self.poste1_cerrada() is True) and (self.puerta1_cerrada() is True) and
         (self.puerta2_cerrada() is True) and (self.poste2_abierta() is True)):
-            print ("MUEBLE 13")
-            self.diagrama()
-            print (" _ _ _ |")
-            numero_posicion = 13
-            self.log_switch_activar()
-        if(numero_posicion == 0):
-            print ("MUEBLE DESCONOCIDO")
-            self.diagrama()
-            print (" ? ? ? ?")
-            self.log_switch_activar()
-        return numero_posicion
+            self.opcion_correcta(13)
+        if(self.id_posicion == 0):
+            self.opcion_correcta(14)
+        return self.id_posicion
 
     def instructivo_digital(self):
         print("*****DIAGRAMA DIGITAL****")
