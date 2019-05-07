@@ -1,9 +1,9 @@
-from gpiozero import Button
-from time import sleep
+from gpiozero import Button,LED
 
 class Switch(object):
 
     #ATRIBUTOS
+    activar_log = False
     btn_seguro = Button(19)
     btn_accionador = Button(26)
     btn_1A = Button(27)
@@ -16,8 +16,10 @@ class Switch(object):
     btn_1H = Button(13)
     btn_2A = Button(15)
     btn_2D = Button(18)
-    btn_2E = Button(25)
-    btn_2H = Button(23)
+    btn_2H = Button(25)
+    btn_2E = Button(23)
+    led_testigo = LED(14)
+
 
     def pruebaSwitchs(self):
         self.status_1A()
@@ -35,117 +37,148 @@ class Switch(object):
         self.status_seguro()
         self.status_accionador()
 
+    # self.led_testigo.on()
+
     def status_1A(self):
         if self.btn_1A.is_active:
-            print("1A Presionado")
-            sleep(2)
+            if self.activar_log:
+                print("1A Liberado")
+            return False
         else:
-            print("1A Liberado")
-            sleep(2)
+            if self.activar_log:
+                print("1A Presionado")
+            return True
 
     def status_1B(self):
         if self.btn_1B.is_active:
-            print("1B Presionado")
-            sleep(2)
+            if self.activar_log:
+                print("1B Liberado ")
+            return False
         else:
-            print("1B Liberado")
-            sleep(2)
+            if self.activar_log:
+                print("1B Presionado")
+            return True
 
     def status_1C(self):
         if self.btn_1C.is_active:
-            print("1C Presionado")
-            sleep(2)
+            if self.activar_log:
+                print("1C Liberado ")
+            return False
         else:
-            print("1C Liberado")
-            sleep(2)
+            if self.activar_log:
+                print("1C Presionado")
+            return True
 
     def status_1D(self):
         if self.btn_1D.is_active:
-            print("1D Presionado")
-            sleep(2)
+            if self.activar_log:
+                print("1D Liberado ")
+            return False
         else:
-            print("1D Liberado")
-            sleep(2)
+            if self.activar_log:
+                print("1D Presionado")
+            return True
 
     def status_1E(self):
         if self.btn_1E.is_active:
-            print("1E Presionado")
-            sleep(2)
+            if self.activar_log:
+                print("1E Liberado ")
+            return False
         else:
-            print("1E Liberado")
-            sleep(2)
+            if self.activar_log:
+                print("1E Presionado")
+            return True
 
     def status_1F(self):
         if self.btn_1F.is_active:
-            print("1F Presionado")
-            sleep(2)
+            if self.activar_log:
+                print("1F Liberado ")
+            return False
         else:
-            print("1F Liberado")
-            sleep(2)
+            if self.activar_log:
+                print("1F Presionado")
+            return True
 
     def status_1G(self):
         if self.btn_1G.is_active:
-            print("1G Presionado")
-            sleep(2)
+            if self.activar_log:
+                print("1G Liberado ")
+            return False
         else:
-            print("1G Liberado")
-            sleep(2)
+            if self.activar_log:
+                print("1G Presionado")
+            return True
 
     def status_1H(self):
         if self.btn_1H.is_active:
-            print("1H Presionado")
-            sleep(2)
+            if self.activar_log:
+                print("1H Liberado ")
+            return False
         else:
-            print("1H Liberado")
-            sleep(2)
+            if self.activar_log:
+                print("1H Presionado")
+            return True
 
     def status_2A(self):
         if self.btn_2A.is_active:
-            print("2A Presionado")
-            sleep(2)
+            if self.activar_log:
+                print("2A Liberado ")
+            return False
         else:
-            print("2A Liberado")
-            sleep(2)
+            if self.activar_log:
+                print("2A Presionado")
+            return True
 
     def status_2D(self):
         if self.btn_2D.is_active:
-            print("2D Presionado")
-            sleep(2)
+            if self.activar_log:
+                print("2D Liberado ")
+            return False
         else:
-            print("2D Liberado")
-            sleep(2)
+            if self.activar_log:
+                print("2D Presionado")
+            return True
 
     def status_2E(self):
         if self.btn_2E.is_active:
-            print("2E Presionado")
-            sleep(2)
+            if self.activar_log:
+                print("2E Liberado ")
+            return False
+
         else:
-            print("2E Liberado")
-            sleep(2)
+            if self.activar_log:
+                print("2E Presionado")
+            return True
 
     def status_2H(self):
         if self.btn_2H.is_active:
-            print("2H Presionado")
-            sleep(2)
+            if self.activar_log:
+                print("2H Liberado ")
+            return False
         else:
-            print("2H Liberado")
-            sleep(2)
+            if self.activar_log:
+                print("2H Presionado")
+            return True
 
     def status_seguro(self):
         if self.btn_seguro.is_active:
-            print("SEGURO Presionado")
-            sleep(2)
+            if self.activar_log:
+                print("SEGURO Liberado ")
+            return False
         else:
-            print("SEGURO Liberado")
-            sleep(2)
+            if self.activar_log:
+                print("SEGURO Presionado")
+            return True
 
     def status_accionador(self):
         if self.btn_accionador.is_active:
-            print("Inicio Presionado")
-            sleep(2)
+            if self.activar_log:
+                print("Inicio Liberado ")
+            return False
         else:
-            print("Inicio Liberado")
-            sleep(2)
+            if self.activar_log:
+                print("Inicio Presionado")
+            return  True
 
     def say_hello(self):
          print("Hello")
