@@ -222,13 +222,15 @@ class Posicion_Mueble(object):
 
     def instructivo_digital(self):
         print("*****DIAGRAMA DIGITAL****")
+        print("*****NOMENCLATURA****")
         print(" _   ---->  CERRADO")
         print(" |   ---->  ABIERTO ")
         print(" *   ---->  GUARDADO ")
         print(" ?   ---->  INVALIDO ")
-        print("*****ORDEN DE DIAGRAMA****")
-        print("POSTE == POLE  / DOOR == PUERTA")
-        print("POLE1 DOOR1 DOOR2 POLE2")
+        print("POSTE == POLE")
+        print("PUERTA == DOOR")
+
+    def ejemplo_diagrama(self):
         print("*****EJEMPLO A POSTES ABIERTOS PUERTAS CERRADAS****")
         print (" _ _ _ _ ")
         print ("|P|D|D|P| ")

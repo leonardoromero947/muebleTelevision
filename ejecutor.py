@@ -9,6 +9,7 @@ class Ejecutor(object):
 
     def iniciar(self):
         self.status_mueble.instructivo_digital()
+        self.preguntar_ejemplo()
         self.opcional_log_sensores()
         while self.vida:
             #self.switch.pruebaSwitchs()
@@ -31,3 +32,8 @@ class Ejecutor(object):
             self.status_mueble.log_activo(True)
         else:
             self.status_mueble.log_activo(False)
+
+    def preguntar_ejemplo(self):
+        continuar = raw_input("Mostrar ejemplo de diagrama? S/N")
+        if continuar in ('s','S'):
+            self.status_mueble.ejemplo_diagrama()
