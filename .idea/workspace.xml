@@ -38,11 +38,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="posicion_mueble.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="posicion_mueble.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/posicion_mueble.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="290">
               <caret line="158" column="23" lean-forward="false" selection-start-line="158" selection-start-column="8" selection-end-line="158" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -96,6 +106,7 @@
         <option value="$PROJECT_DIR$/ejecutor.py" />
         <option value="$PROJECT_DIR$/switchs.py" />
         <option value="$PROJECT_DIR$/posicion_mueble.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -483,6 +494,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
           <caret line="158" column="23" lean-forward="false" selection-start-line="158" selection-start-column="8" selection-end-line="158" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
           <folding />
         </state>
       </provider>
