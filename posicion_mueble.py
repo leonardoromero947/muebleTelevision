@@ -158,10 +158,9 @@ class Posicion_Mueble(object):
 
     def opcion_correcta(self,numero):
         print ("MUEBLE "+`numero`)
-        self.diagrama()
-        print (" _ _ _ _")
         self.log_switch_activar()
         self.id_posicion = numero
+        self.diagrama()
 
     def consultar_status_mueble(self):
         # 01 MUEBLE ::: _ _ _ _
@@ -180,44 +179,58 @@ class Posicion_Mueble(object):
         if((self.poste1_cerrada() is True) and (self.puerta1_cerrada() is True) and
         (self.puerta2_cerrada() is True) and (self.poste2_cerrada() is True)):
             self.opcion_correcta(1)
+            print (" _ _ _ _")
         if((self.poste1_abierta() is True) and (self.puerta1_cerrada() is True) and
         (self.puerta2_cerrada() is True) and (self.poste2_cerrada() is True)):
             self.opcion_correcta(2)
+            print (" | _ _ _")
         if ((self.poste1_abierta() is True) and (self.puerta1_cerrada() is True) and
         (self.puerta2_cerrada() is True) and (self.poste2_abierta() is True)):
             self.opcion_correcta(3)
+            print (" | _ _ |")
         if ((self.poste1_abierta() is True) and (self.puerta1_abierta() is True) and
         (self.puerta2_cerrada() is True) and (self.poste2_abierta() is True)):
             self.opcion_correcta(4)
+            print (" | | _ |")
         if ((self.poste1_abierta() is True) and (self.puerta1_abierta() is True) and
         (self.puerta2_abierta() is True) and (self.poste2_abierta() is True)):
             self.opcion_correcta(5)
+            print (" | | | |")
         if ((self.poste1_abierta() is True) and (self.puerta1_guardada() is True) and
         (self.puerta2_abierta() is True) and (self.poste2_abierta() is True)):
             self.opcion_correcta(6)
+            print (" | * | |")
         if ((self.poste1_abierta() is True) and (self.puerta1_guardada() is True) and
         (self.puerta2_guardada() is True) and (self.poste2_abierta() is True)):
             self.opcion_correcta(7)
+            print (" | * * |")
         if ((self.poste1_cerrada() is True) and (self.puerta1_guardada() is True) and
         (self.puerta2_guardada() is True) and (self.poste2_abierta() is True)):
             self.opcion_correcta(8)
+            print (" _ * * |")
         if ((self.poste1_cerrada() is True) and (self.puerta1_guardada() is True) and
         (self.puerta2_guardada() is True) and (self.poste2_cerrada() is True)):
             self.opcion_correcta(9)
+            print (" _ * * _")
         if ((self.poste1_abierta() is True) and (self.puerta1_guardada() is True) and
         (self.puerta2_guardada() is True) and (self.poste2_cerrada() is True)):
             self.opcion_correcta(10)
+            print (" | * * _")
         if ((self.poste1_abierta() is True) and (self.puerta1_guardada() is True) and
         (self.puerta2_guardada() is True) and (self.poste2_cerrada() is True)):
             self.opcion_correcta(11)
+            print (" | | * |")
         if ((self.poste1_abierta() is True) and (self.puerta1_cerrada() is True) and
         (self.puerta2_abierta() is True) and (self.poste2_abierta() is True)):
             self.opcion_correcta(12)
+            print (" | _ | |")
         if ((self.poste1_cerrada() is True) and (self.puerta1_cerrada() is True) and
         (self.puerta2_cerrada() is True) and (self.poste2_abierta() is True)):
             self.opcion_correcta(13)
+            print (" _ _ _ |")
         if(self.id_posicion == 0):
             self.opcion_correcta(14)
+            print (" ? ? ? ?")
         return self.id_posicion
 
     def instructivo_digital(self):
