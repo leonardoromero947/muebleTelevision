@@ -1,13 +1,16 @@
 import switchs as SW
 import posicion_mueble as PM
-
+import memoria as EX
 
 class Ejecutor(object):
     switch = SW.Switch()
     status_mueble = PM.Posicion_Mueble()
     vida = True
+    extra = EX.Extra()
 
     def iniciar(self):
+        self.extra.leer_xml()
+        self.extra.verificar_variables()
         self.status_mueble.instructivo_digital()
         self.preguntar_ejemplo()
         self.opcional_log_sensores()
@@ -27,13 +30,8 @@ class Ejecutor(object):
             return False
 
     def opcional_log_sensores(self):
-        continuar = raw_input("Mostrar log de botones individuales? S/N")
-        if continuar in ('s','S'):
-            self.status_mueble.log_activo(True)
-        else:
-            self.status_mueble.log_activo(False)
+        self.status_mueble.log_activo(self.extra.log)
 
     def preguntar_ejemplo(self):
-        continuar = raw_input("Mostrar ejemplo de diagrama? S/N")
-        if continuar in ('s','S'):
+        if self.extra.ejemplo:
             self.status_mueble.ejemplo_diagrama()

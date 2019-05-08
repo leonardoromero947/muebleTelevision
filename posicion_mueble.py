@@ -242,6 +242,7 @@ class Posicion_Mueble(object):
         self.diagrama()
 
     def consultar_status_mueble(self):
+        self.id_posicion = 0
         # 00 MUEBLE ::: # # # #
         # 01 MUEBLE ::: _ _ _ _
         # 02 MUEBLE ::: | _ _ _
