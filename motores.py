@@ -46,10 +46,10 @@ class Motores(object):
         if(self.memoria.proceso == 1):
             print("MUEBLE INICIALMENTE CERRADO")
             self.mueble_cerrado_proceso_abrir()
-        if(self.memoria.proceso == 7):
+        if(self.memoria.proceso == 6):
             print("MUEBLE INICIALMENTE ABIERTO")
             self.mueble_abierto_proceso_cerrar()
-        if(self.memoria.proceso != 7 and self.memoria.proceso != 1):
+        if(self.memoria.proceso != 6 and self.memoria.proceso != 1):
             print("ESTADO AUN NO PROGRAMADO")
 
     def mueble_cerrado_proceso_abrir(self):
@@ -61,22 +61,13 @@ class Motores(object):
             self.memoria.insertar_estados_finales_xml(1)
             self.armar.poste1_abrir()
             status_mueble = self.valida_continuar()
-        if (status_mueble == 2):
-            self.armar.poste2_abrir()
-            status_mueble = self.valida_continuar()
         if (status_mueble == 3):
             self.armar.puerta1_abrir()
             status_mueble = self.valida_continuar()
-        if(status_mueble == 4):
-            self.armar.puerta2_abrir()
-            status_mueble = self.valida_continuar()
-        if (status_mueble == 5):
+        if (status_mueble == 4):
             self.armar.puerta1_guardar()
             status_mueble = self.valida_continuar()
         if (status_mueble == 6):
-            self.armar.puerta2_guardar()
-            status_mueble = self.valida_continuar()
-        if (status_mueble == 7):
             self.memoria.insertar_estados_finales_xml(3)
             print("MUEBLE ABIERTO")
 
@@ -86,23 +77,13 @@ class Motores(object):
         if (status_mueble == 0):
             self.memoria.insertar_estados_finales_xml(2)
             self.error_fatal()
-        if (status_mueble == 7):
-            self.memoria.insertar_estados_finales_xml(2)
-            self.armar.puerta2_desplegar()
-            status_mueble = self.valida_continuar()
         if (status_mueble == 6):
             self.armar.puerta1_desplegar()
-            status_mueble = self.valida_continuar()
-        if (status_mueble == 5):
-            self.armar.puerta2_cerrar()
             status_mueble = self.valida_continuar()
         if (status_mueble == 4):
             self.armar.puerta1_cerrar()
             status_mueble = self.valida_continuar()
         if (status_mueble == 3):
-            self.armar.poste2_cerrar()
-            status_mueble = self.valida_continuar()
-        if (status_mueble == 2):
             self.armar.poste1_cerrar()
             status_mueble = self.valida_continuar()
         if (status_mueble == 1):
