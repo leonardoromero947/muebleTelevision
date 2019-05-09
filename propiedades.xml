@@ -6,7 +6,8 @@
         <log>False</log>
         <visor>False</visor>
         <proceso>20</proceso>
-        <cerrado>False</cerrado>
+        <cerrado>True</cerrado>
+        <abierto>False</abierto>
         <pruebas>False</pruebas>
     </propiedades>
 </data>

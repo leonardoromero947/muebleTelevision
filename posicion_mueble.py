@@ -399,11 +399,3 @@ class Posicion_Mueble(object):
             return True
         else:
             return False
-
-    def mueble_(self):
-        if((self.puerta1_cerrada() is True) and (self.puerta2_cerrada() is True) and
-        (self.poste1_cerrada() is True) and (self.poste2_cerrada() is True)):
-            print ("Mueble :::: CERRADO")
-            return True
-        else:
-            return False

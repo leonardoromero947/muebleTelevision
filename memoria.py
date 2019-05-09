@@ -8,6 +8,7 @@ class Extra(object):
     log = False
     visor = False
     cerrado = False
+    abierto= False
     pruebas = False
     proceso = 0
 
@@ -32,13 +33,15 @@ class Extra(object):
             self.proceso = int(child.find('proceso').text)
             self.cerrado = ast.literal_eval(child.find('cerrado').text)
             self.pruebas = ast.literal_eval(child.find('pruebas').text)
+            self.abierto = ast.literal_eval(child.find('abierto').text)
 
     def leer_proceso_xml(self):
         tree = ET.parse('propiedades.xml')
         root = tree.getroot()
         for child in root.findall('propiedades'):
             self.proceso = child.find('proceso').text
-            self.cerrado = bool(child.find('cerrado').text)
+            self.cerrado = ast.literal_eval(child.find('cerrado').text)
+            self.abierto = ast.literal_eval(child.find('abierto').text)
 
     def verificar_variables(self):
         print (":::instructivo:::")
@@ -49,6 +52,8 @@ class Extra(object):
         print (self.log)
         print (":::cerrado:::")
         print (self.cerrado)
+        print (":::abierto:::")
+        print (self.abierto)
         print (":::pruebas:::")
         print (self.pruebas)
         print (":::proceso:::")
@@ -63,3 +68,31 @@ class Extra(object):
             proceso.set('update','yes')
         tree.write('propiedades.xml')
 
+    def insertar_estados_finales_xml(self, numero):
+        if numero == 1:
+            self.insert_abierto(True)
+            self.insert_cerrado(False)
+        if numero == 2:
+            self.insert_abierto(False)
+            self.insert_cerrado(True)
+        if numero == 3:
+            self.insert_abierto(False)
+            self.insert_cerrado(False)
+
+    def insert_abierto(self, estado):
+        tree = ET.parse('propiedades.xml')
+        root = tree.getroot()
+        for abierto in root.iter('abierto'):
+            new_abierto = estado
+            abierto.text = str(new_abierto)
+            abierto.set('update', 'yes')
+        tree.write('propiedades.xml')
+
+    def insert_cerrado(self,estado):
+        tree = ET.parse('propiedades.xml')
+        root = tree.getroot()
+        for cerrado in root.iter('cerrado'):
+            new_cerrado = estado
+            cerrado.text = str(new_cerrado)
+            cerrado.set('update', 'yes')
+        tree.write('propiedades.xml')

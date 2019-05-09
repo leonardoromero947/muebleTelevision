@@ -1,4 +1,4 @@
-from gpiozero import Button,LED
+from gpiozero import Button
 
 class Switch(object):
 
@@ -18,7 +18,6 @@ class Switch(object):
     btn_2D = Button(18)
     btn_2H = Button(25)
     btn_2E = Button(23)
-    led_testigo = LED(14)
 
 
     def pruebaSwitchs(self):
