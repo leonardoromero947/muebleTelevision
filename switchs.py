@@ -1,8 +1,10 @@
+import raspardino_response as RPNO
 from gpiozero import Button
 
 class Switch(object):
 
     #ATRIBUTOS
+    arduino = RPNO.Raspardino()
     activar_log = False
     btn_seguro = Button(19)
     btn_accionador = Button(26)
@@ -14,10 +16,10 @@ class Switch(object):
     btn_1F = Button(5)
     btn_1G = Button(6)
     btn_1H = Button(13)
-    btn_2A = Button(15)
-    btn_2D = Button(18)
-    btn_2H = Button(25)
-    btn_2E = Button(23)
+    #btn_2A = Button(15)
+    #btn_2D = Button(18)
+    #btn_2H = Button(25)
+    #btn_2E = Button(23)
 
 
     def pruebaSwitchs(self):

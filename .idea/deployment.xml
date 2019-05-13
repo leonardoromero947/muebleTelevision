@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="ssh://pi@10.147.20.29:22/usr/bin/python" autoUploadExternalChanges="true">
+  <component name="PublishConfigData" autoUpload="Always" serverName="ssh://pi@10.147.20.127:22/usr/bin/python" autoUploadExternalChanges="true">
     <serverData>
-      <paths name="ssh://pi@10.147.20.29:22/usr/bin/python">
+      <paths name="ssh://pi@10.147.20.127:22/usr/bin/python">
         <serverdata>
           <mappings>
-            <mapping deploy="MuebleTVPyton" local="$PROJECT_DIR$" />
+            <mapping deploy="/MuebleTVPyton" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>
