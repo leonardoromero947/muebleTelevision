@@ -121,45 +121,44 @@ class Switch(object):
             return True
 
     def status_2A(self):
-        if self.btn_2A.is_active:
-            if self.activar_log:
-                print("2A Liberado ")
-            return False
-        else:
+        indicador = self.arduino.espruino_cmd('a').strip()
+        if(indicador is '1'):
             if self.activar_log:
                 print("2A Presionado")
-            return True
+        else:
+            if self.activar_log:
+                print("2A liberado")
+        return self.arduino.traductor(indicador)
 
     def status_2D(self):
-        if self.btn_2D.is_active:
-            if self.activar_log:
-                print("2D Liberado ")
-            return False
-        else:
+        indicador = self.arduino.espruino_cmd('d').strip()
+        if(indicador is '1'):
             if self.activar_log:
                 print("2D Presionado")
-            return True
+        else:
+            if self.activar_log:
+                print("2D liberado")
+        return self.arduino.traductor(indicador)
 
     def status_2E(self):
-        if self.btn_2E.is_active:
-            if self.activar_log:
-                print("2E Liberado ")
-            return False
-
-        else:
+        indicador = self.arduino.espruino_cmd('e').strip()
+        if(indicador is '1'):
             if self.activar_log:
                 print("2E Presionado")
-            return True
-
-    def status_2H(self):
-        if self.btn_2H.is_active:
-            if self.activar_log:
-                print("2H Liberado ")
-            return False
         else:
             if self.activar_log:
+                print("2E liberado")
+        return self.arduino.traductor(indicador)
+
+    def status_2H(self):
+        indicador = self.arduino.espruino_cmd('h').strip()
+        if(indicador is '1'):
+            if self.activar_log:
                 print("2H Presionado")
-            return True
+        else:
+            if self.activar_log:
+                print("2H liberado")
+        return self.arduino.traductor(indicador)
 
     def status_seguro(self):
         if self.btn_seguro.is_active:
@@ -180,6 +179,16 @@ class Switch(object):
             if self.activar_log:
                 print("Inicio Presionado")
             return  True
+
+    def status_accionador_control(self):
+        indicador = self.arduino.espruino_cmd('i').strip()
+        if(indicador is '1'):
+            if self.activar_log:
+                print("Control presionado")
+        else:
+            if self.activar_log:
+                print("Control libre")
+        return self.arduino.traductor(indicador)
 
     def say_hello(self):
          print("Hello")

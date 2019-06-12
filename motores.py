@@ -24,7 +24,7 @@ class Motores(object):
     buzzer = Buzzer(24)
 
     def ejecucion_inicial(self):
-        if(self.switch_motores.status_accionador()):
+        if(self.switch_motores.status_accionador() or self.switch_motores.status_accionador_control()):
             if(self.switch_motores.status_seguro()):
                 print ("SEGURO ACTIVO IMPOSIBLE EJECUTAR MOVIMIENTO")
                 self.buzzer.on()
@@ -50,12 +50,21 @@ class Motores(object):
             print("MUEBLE INICIALMENTE ABIERTO")
             self.mueble_abierto_proceso_cerrar()
         if(self.memoria.proceso != 6 and self.memoria.proceso != 1):
-            print("ESTADO AUN NO PROGRAMADO")
+            print("MUEBLE REGRESANDO DE UN ESTADO INCOMPLETO")
+            if(self.memoria.abierto is True):
+                print("MUEBLE SEGUIR APERTURA")
+                self.mueble_cerrado_proceso_abrir()
+            if(self.memoria.cerrado is True):
+                print("MUEBLE SEGUIR CIERRE")
+                self.mueble_abierto_proceso_cerrar()
+            if(self.memoria.cerrado is False and self.memoria.abierto is False and self.memoria.proceso == 0):
+                self.mueble_cerrado_proceso_abrir()
+
 
     def mueble_cerrado_proceso_abrir(self):
         status_mueble = self.motores_posicion_mueble.consultar_status_mueble()
         if (status_mueble == 0):
-            self.memoria.insertar_estados_finales_xml(1)
+            self.memoria.insertar_estados_finales_xml(3)
             self.error_fatal()
         if (status_mueble == 1):
             self.memoria.insertar_estados_finales_xml(1)
