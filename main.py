@@ -1,19 +1,53 @@
 #DOCUMENTO INICIAL DE FUNCIONAMIENTO
 import ejecutor as EJT
-import time
+#import time
 import raspardino_response as RDNR
-import switchs as SW
+import armado_mueble as A
+#import switchs as SW
+#import raspardino_response as R
 
 class Main(object):
     switch = EJT.Ejecutor()
 
+    def prueba(self):
+        a = A.Armado_mueble()
+        arduino = RDNR.Raspardino()
+        print("Opciones")
+        print("c = puerta proceso cerrar")
+        print("a = puerta proceso abrir")
+        print("s = seguro de puerta cerrar")
+        print("x = seguro de puerta abrir")
+        continuar = raw_input("Seleccion deseada?")
+        if continuar in ('c', 'C'):
+            a.puerta1_cerrar()
+        else:
+            if continuar in ('a', 'A'):
+                a.puerta1_abrir()
+            else:
+                if continuar in ('s', 'S'):
+                    print (arduino.espruino_cmd('w').strip())
+                else:
+                    if continuar in ('x', 'X'):
+                        print (arduino.espruino_cmd('y').strip())
 m = Main()
+#m.prueba()
 m.switch.iniciar()
+#sts = SW.Switch()
+
+#while True:
+ #   arduino = R.Raspardino()
+  #  comando =raw_input("teclee un comando")
+   # arduino.llamada(comando)
+#    print(sts.status_2A())
+#    print(sts.status_2D())
+#    time.sleep(2)
+#a = A.Armado_mueble()
+#a.puerta1_cerrar()
 
 #arduino = RDNR.Raspardino()
 #time.sleep(5)
-#print (arduino.espruino_cmd('w').strip())
 #print (arduino.espruino_cmd('x').strip())
+#sprint (arduino.espruino_cmd('x').strip())
 #time.sleep(5)
 #print (arduino.espruino_cmd('y').strip())
 #print (arduino.espruino_cmd('z').strip())
