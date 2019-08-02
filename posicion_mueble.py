@@ -241,7 +241,7 @@ class Posicion_Mueble(object):
         self.id_posicion = numero
         self.diagrama()
 
-    def consultar_status_mueble(self):
+    def consultar_status_mueble(self,tipo):
         self.id_posicion = 0
         # 00 MUEBLE ::: # # # #
         # 01 MUEBLE ::: _ _ _ _
@@ -266,23 +266,134 @@ class Posicion_Mueble(object):
         # 20 MUEBLE ::: | $ | |
         # 21 MUEBLE ::: | | $ |
         # 22 MUEBLE ::: | $ $ |
-
-        if((self.poste1_cerrada() is True) and (self.puerta1_cerrada() is True)):
-            self.opcion_correcta(1)
-            print (" _ _ X X")
-        if ((self.poste1_abierta() is True) and (self.puerta1_cerrada() is True)):
-            self.opcion_correcta(3)
-            print (" | _ X X")
-        if ((self.poste1_abierta() is True) and (self.puerta1_abierta() is True)):
-            self.opcion_correcta(4)
-            print (" | | X X")
-        if ((self.poste1_abierta() is True) and (self.puerta1_guardada() is True)):
-            self.opcion_correcta(6)
-            print (" | * X X")
-        #CONDICION INVALIDA
-        if(self.id_posicion == 0):
-            self.opcion_correcta(0)
-            print (" # # X X")
+        if (tipo is "A" or tipo is "a"):
+            if((self.poste1_cerrada() is True) and (self.puerta1_cerrada() is True)):
+                self.opcion_correcta(1)
+                print (" _ _ X X")
+            if ((self.poste1_abierta() is True) and (self.puerta1_cerrada() is True)):
+                self.opcion_correcta(3)
+                print (" | _ X X")
+            if ((self.poste1_abierta() is True) and (self.puerta1_abierta() is True)):
+                self.opcion_correcta(4)
+                print (" | | X X")
+            if ((self.poste1_abierta() is True) and (self.puerta1_guardada() is True)):
+                self.opcion_correcta(6)
+                print (" | * X X")
+            #CONDICION INVALIDA
+            if(self.id_posicion == 0):
+                self.opcion_correcta(0)
+                print (" # # X X")
+        if (tipo is "B" or tipo is "B"):
+            if ((self.poste2_cerrada() is True) and (self.puerta2_cerrada() is True)):
+                self.opcion_correcta(1)
+                print (" X X _ _")
+            if ((self.poste2_abierta() is True) and (self.puerta2_cerrada() is True)):
+                self.opcion_correcta(3)
+                print (" X X _ |")
+            if ((self.poste2_abierta() is True) and (self.puerta2_abierta() is True)):
+                self.opcion_correcta(5)
+                print (" X X | |")
+            if ((self.poste2_abierta() is True) and (self.puerta2_guardada() is True)):
+                self.opcion_correcta(7)
+                print (" X X * |")
+                # CONDICION INVALIDA
+            if (self.id_posicion == 0):
+                self.opcion_correcta(0)
+                print (" X X # # ")
+        if(tipo is "C" or tipo is "c"):
+            if ((self.poste1_cerrada() is True) and (self.puerta1_cerrada() is True) and
+                    (self.puerta2_cerrada() is True) and (self.poste2_cerrada() is True)):
+                self.opcion_correcta(1)
+                print (" _ _ _ _")
+            if ((self.poste1_abierta() is True) and (self.puerta1_cerrada() is True) and
+                    (self.puerta2_cerrada() is True) and (self.poste2_cerrada() is True)):
+                self.opcion_correcta(2)
+                print (" | _ _ _")
+            if ((self.poste1_abierta() is True) and (self.puerta1_cerrada() is True) and
+                    (self.puerta2_cerrada() is True) and (self.poste2_abierta() is True)):
+                self.opcion_correcta(3)
+                print (" | _ _ |")
+            if ((self.poste1_abierta() is True) and (self.puerta1_abierta() is True) and
+                    (self.puerta2_cerrada() is True) and (self.poste2_abierta() is True)):
+                self.opcion_correcta(4)
+                print (" | | _ |")
+            if ((self.poste1_abierta() is True) and (self.puerta1_abierta() is True) and
+                    (self.puerta2_abierta() is True) and (self.poste2_abierta() is True)):
+                self.opcion_correcta(5)
+                print (" | | | |")
+            if ((self.poste1_abierta() is True) and (self.puerta1_guardada() is True) and
+                    (self.puerta2_abierta() is True) and (self.poste2_abierta() is True)):
+                self.opcion_correcta(6)
+                print (" | * | |")
+            if ((self.poste1_abierta() is True) and (self.puerta1_guardada() is True) and
+                    (self.puerta2_guardada() is True) and (self.poste2_abierta() is True)):
+                self.opcion_correcta(7)
+                print (" | * * |")
+            if ((self.poste1_cerrada() is True) and (self.puerta1_guardada() is True) and
+                    (self.puerta2_guardada() is True) and (self.poste2_abierta() is True)):
+                self.opcion_correcta(8)
+                print (" _ * * |")
+            if ((self.poste1_cerrada() is True) and (self.puerta1_guardada() is True) and
+                    (self.puerta2_guardada() is True) and (self.poste2_cerrada() is True)):
+                self.opcion_correcta(9)
+                print (" _ * * _")
+            if ((self.poste1_abierta() is True) and (self.puerta1_guardada() is True) and
+                    (self.puerta2_guardada() is True) and (self.poste2_cerrada() is True)):
+                self.opcion_correcta(10)
+                print (" | * * _")
+            if ((self.poste1_abierta() is True) and (self.puerta1_abierta() is True) and
+                    (self.puerta2_guardada() is True) and (self.poste2_abierta() is True)):
+                self.opcion_correcta(11)
+                print (" | | * |")
+            if ((self.poste1_abierta() is True) and (self.puerta1_cerrada() is True) and
+                    (self.puerta2_abierta() is True) and (self.poste2_abierta() is True)):
+                self.opcion_correcta(12)
+                print (" | _ | |")
+            if ((self.poste1_cerrada() is True) and (self.puerta1_cerrada() is True) and
+                    (self.puerta2_cerrada() is True) and (self.poste2_abierta() is True)):
+                self.opcion_correcta(13)
+                print (" _ _ _ |")
+                # CONDICIONES APAGON
+            if ((self.poste1_perdido() is True) and (self.puerta1_cerrada() is True) and
+                    (self.puerta2_cerrada() is True) and (self.poste2_cerrada() is True)):
+                self.opcion_correcta(14)
+                print (" ? _ _ _")
+            if ((self.poste1_cerrada() is True) and (self.puerta1_cerrada() is True) and
+                    (self.puerta2_cerrada() is True) and (self.poste2_pedido() is True)):
+                self.opcion_correcta(15)
+                print (" _ _ _ ?")
+            if ((self.poste1_perdido() is True) and (self.puerta1_cerrada() is True) and
+                    (self.puerta2_cerrada() is True) and (self.poste2_pedido() is True)):
+                self.opcion_correcta(16)
+                print (" ? _ _ ?")
+            if ((self.poste1_abierta() is True) and (self.puerta1_abierta_perdida() is True) and
+                    (self.puerta2_cerrada() is True) and (self.poste2_abierta() is True)):
+                self.opcion_correcta(17)
+                print (" | ? _ |")
+            if ((self.poste1_abierta() is True) and (self.puerta1_cerrada() is True) and
+                    (self.puerta2_cerrada_perdida() is True) and (self.poste2_abierta() is True)):
+                self.opcion_correcta(18)
+                print (" | _ ? |")
+            if ((self.poste1_abierta() is True) and (self.puerta1_abierta_perdida() is True) and
+                    (self.puerta2_cerrada_perdida() is True) and (self.poste2_abierta() is True)):
+                self.opcion_correcta(19)
+                print (" | ? ? |")
+            if ((self.poste1_abierta() is True) and (self.puerta1_guardada_perdida() is True) and
+                    (self.puerta2_abierta() is True) and (self.poste2_abierta() is True)):
+                self.opcion_correcta(20)
+                print (" | $ | |")
+            if ((self.poste1_abierta() is True) and (self.puerta1_abierta() is True) and
+                    (self.puerta2_guardada_perdida() is True) and (self.poste2_abierta() is True)):
+                self.opcion_correcta(21)
+                print (" | | $ |")
+            if ((self.poste1_abierta() is True) and (self.puerta1_guardada_perdida() is True) and
+                    (self.puerta2_guardada_perdida() is True) and (self.poste2_abierta() is True)):
+                self.opcion_correcta(22)
+                print (" | $ $ |")
+                # CONDICION INVALIDA
+            if (self.id_posicion == 0):
+                self.opcion_correcta(0)
+                print (" # # # #")
         return self.id_posicion
 
     def instructivo_digital(self):

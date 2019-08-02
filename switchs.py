@@ -1,5 +1,7 @@
 import raspardino_response as RPNO
+import memoria as MEM
 from gpiozero import Button
+import time
 
 class Switch(object):
 
@@ -161,14 +163,15 @@ class Switch(object):
         return self.arduino.traductor(indicador)
 
     def status_seguro(self):
+        #return MEM.Extra.devolver_status_seguro()
+        return False;
+
+    def status_seguro_fisico(self):
         if self.btn_seguro.is_active:
-            if self.activar_log:
-                print("SEGURO Liberado ")
             return False
         else:
-            if self.activar_log:
-                print("SEGURO Presionado")
             return True
+
 
     def status_accionador(self):
         if self.btn_accionador.is_active:
@@ -198,6 +201,13 @@ class Switch(object):
 
     def cerrarPines(self):
         self.btn_1A.close()
+
+    def verificarPausa(self):
+        time.sleep(0.5)
+        if (self.status_seguro() is False and ( self.status_seguro() or self.status_accionador())):
+            return True
+        else:
+            return False;
     # def prueba(self):
     #     self.btn_1A.when_activated = say_hello
     #     self.btn_1A.when_deactivated = say_goodbye

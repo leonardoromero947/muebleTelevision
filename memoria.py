@@ -11,6 +11,7 @@ class Extra(object):
     abierto= False
     pruebas = False
     proceso = 0
+    seguro = False
 
     def leer_documento(self):
         documento = open('propiedades.txt')
@@ -34,6 +35,7 @@ class Extra(object):
             self.cerrado = ast.literal_eval(child.find('cerrado').text)
             self.pruebas = ast.literal_eval(child.find('pruebas').text)
             self.abierto = ast.literal_eval(child.find('abierto').text)
+            self.seguro = ast.literal_eval(child.find('abierto').text)
 
     def leer_proceso_xml(self):
         tree = ET.parse('propiedades.xml')
@@ -58,6 +60,7 @@ class Extra(object):
         print (self.pruebas)
         print (":::proceso:::")
         print (self.proceso)
+
 
     def insertar_proceso_xml(self,numero_proceso):
         tree = ET.parse('propiedades.xml')
@@ -96,3 +99,24 @@ class Extra(object):
             cerrado.text = str(new_cerrado)
             cerrado.set('update', 'yes')
         tree.write('propiedades.xml')
+
+    def seguro(self):
+        estado = self.devolver_status_seguro()
+        tree = ET.parse('propiedades.xml')
+        root = tree.getroot()
+        if estado is True:
+            print("SEGURO DESACTIVADO")
+            new_cerrado = 'False'
+        else:
+            print("SEGURO ACTIVADO")
+            new_cerrado = 'True'
+        for cerrado in root.iter('seguro'):
+            cerrado.text = str(new_cerrado)
+            cerrado.set('update', 'yes')
+        tree.write('propiedades.xml')
+
+    def devolver_status_seguro(self):
+        tree = ET.parse('propiedades.xml')
+        root = tree.getroot()
+        for child in root.findall('propiedades'):
+            return ast.literal_eval(child.find('seguro').text)

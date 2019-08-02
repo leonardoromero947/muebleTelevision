@@ -54,19 +54,17 @@ class Armado_mueble(object):
         while True:
             if(self.armado_mueble_switch.status_1D()):
                 self.arduino.espruino_cmd('y').strip()
-
-                if(contador == 0):
-                    self.H3R.on()
-                    time.sleep(3.5)
-                    self.H3R.off()
-                    time.sleep(2)
-                    contador = 1
-                else:
-                    self.H3R.on()
+                time.sleep(1)
+                self.H3R.on()
+                time.sleep(3)
+                self.H3R.off()
+                time.sleep(3)
+                self.H3R.on()
             if(self.armado_mueble_switch.status_2D()):
-                time.sleep(self.delay_puerta_apertura_A)
+                #time.sleep(self.delay_puerta_apertura_A)
                 self.arduino.espruino_cmd('w').strip()
                 self.H3R.off()
+                time.sleep(3)
                 print("PUERTA 1 ABIERTA")
                 return True
                 break
@@ -75,12 +73,50 @@ class Armado_mueble(object):
                 print("SEGURO ACTIVO PAUSA ABRIENDO PUERTA 1")
                 tiempo_pausa = time.time()
                 while True:
-                    if self.armado_mueble_switch.status_seguro() is False:
+                    if (self.armado_mueble_switch.verificarPausa()):
+                        time.sleep(2)
+                        self.H3R.on()
+                        print("PUERTA 1 ABRIENDO")
+                        tiempo_adicional = self.cronometro(tiempo_pausa)
+                        break
+            if(self.cronometro(tiempo) > (self.H3R_tiempo_definido + tiempo_adicional)):
+                self.H3R.off()
+                print("TIEMPO ESPERA AGOTADO")
+                return False
+                break
+
+    def puerta1_abrirPrueba(self):
+        tiempo = time.time()
+        tiempo_adicional = 0
+        contador = 0
+        while True:
+            if (True):
+                self.arduino.espruino_cmd('y').strip()
+                # time.sleep(1)
+                # self.H3R.on()
+                # time.sleep(4.2)
+                # self.H3R.off()
+                # time.sleep(2)
+                self.H3R.on()
+                # time.sleep(1.5)
+            if (False):
+                # time.sleep(self.delay_puerta_apertura_A)
+                self.arduino.espruino_cmd('w').strip()
+                self.H3R.off()
+                print("PUERTA 1 ABIERTA")
+                return True
+                break
+            if (self.armado_mueble_switch.status_seguro() or self.armado_mueble_switch.status_accionador() or self.armado_mueble_switch.status_accionador_control()):
+                self.H3R.off()
+                print("SEGURO ACTIVO PAUSA ABRIENDO PUERTA 1")
+                tiempo_pausa = time.time()
+                while True:
+                    if (self.armado_mueble_switch.verificarPausa()):
                         time.sleep(2)
                         self.H3R.on()
                         tiempo_adicional = self.cronometro(tiempo_pausa)
                         break
-            if(self.cronometro(tiempo) > (self.H3R_tiempo_definido + tiempo_adicional)):
+            if (self.cronometro(tiempo) > (self.H3R_tiempo_definido + tiempo_adicional)):
                 self.H3R.off()
                 print("TIEMPO ESPERA AGOTADO")
                 return False
@@ -98,14 +134,16 @@ class Armado_mueble(object):
                 print("PUERTA 1 CERRADA")
                 return True
                 break
-            if (self.armado_mueble_switch.status_seguro()):
+            if (self.armado_mueble_switch.status_seguro() or self.armado_mueble_switch.status_accionador() or self.armado_mueble_switch.status_accionador_control()):
                 self.H3L.off()
+                time.sleep(2)
                 print("SEGURO ACTIVO PAUSA CERRANDO PUERTA 1")
                 tiempo_pausa = time.time()
                 while True:
-                    if self.armado_mueble_switch.status_seguro() is False:
+                    if (self.armado_mueble_switch.verificarPausa()):
                         time.sleep(2)
                         self.H3L.on()
+                        print("PUERTA 1 CERRANDO")
                         tiempo_adicional = self.cronometro(tiempo_pausa)
                         break
             if (self.cronometro(tiempo) > (self.H3L_tiempo_definido + tiempo_adicional)):
@@ -125,14 +163,15 @@ class Armado_mueble(object):
                 print("PUERTA 1 GUARDAR")
                 return True
                 break
-            if (self.armado_mueble_switch.status_seguro()):
+            if (self.armado_mueble_switch.status_seguro() or self.armado_mueble_switch.status_accionador() or self.armado_mueble_switch.status_accionador_control()):
                 self.H2R.off()
                 print("SEGURO ACTIVO PAUSA GUARDAR PUERTA 1")
                 tiempo_pausa = time.time()
                 while True:
-                    if self.armado_mueble_switch.status_seguro() is False:
+                    if (self.armado_mueble_switch.verificarPausa()):
                         time.sleep(2)
                         self.H2R.on()
+                        print("PUERTA 1 GUARDANDO")
                         tiempo_adicional = self.cronometro(tiempo_pausa)
                         break
             if (self.cronometro(tiempo) > (self.H2R_tiempo_definido + tiempo_adicional)):
@@ -152,14 +191,15 @@ class Armado_mueble(object):
                 print("PUERTA 1 DESPLEGAR")
                 return True
                 break
-            if (self.armado_mueble_switch.status_seguro()):
+            if (self.armado_mueble_switch.status_seguro() or self.armado_mueble_switch.status_accionador() or self.armado_mueble_switch.status_accionador_control()):
                 self.H2L.off()
                 print("SEGURO ACTIVO PAUSA DESPLEGAR PUERTA 1")
                 tiempo_pausa = time.time()
                 while True:
-                    if self.armado_mueble_switch.status_seguro() is False:
+                    if (self.armado_mueble_switch.verificarPausa()):
                         time.sleep(2)
                         self.H2L.on()
+                        print("PUERTA 1 DESPLEGANDO")
                         tiempo_adicional = self.cronometro(tiempo_pausa)
                         break
             if (self.cronometro(tiempo) > (self.H2L_tiempo_definido + tiempo_adicional)):
@@ -171,33 +211,32 @@ class Armado_mueble(object):
     def puerta2_abrir(self):
         tiempo = time.time()
         tiempo_adicional = 0
-        contador = 0
         while True:
             if (self.armado_mueble_switch.status_1H()):
                 self.arduino.espruino_cmd('z').strip()
-                if(contador == 0):
-                    self.H6R.on()
-                    time.sleep(3.5)
-                    self.H6R.off()
-                    time.sleep(2)
-                    contador = 1
-                else:
-                    self.H6R.on()
+                time.sleep(1)
+                self.H6R.on()
+                time.sleep(3)
+                self.H6R.off()
+                time.sleep(3)
+                self.H6R.on()
             if (self.armado_mueble_switch.status_2H()):
                 time.sleep(self.delay_puerta_apertura_B)
                 self.arduino.espruino_cmd('x').strip()
                 self.H6R.off()
+                time.sleep(3)
                 print("PUERTA 2 ABIERTA")
                 return True
                 break
-            if (self.armado_mueble_switch.status_seguro()):
+            if (self.armado_mueble_switch.status_seguro() or self.armado_mueble_switch.status_accionador() or self.armado_mueble_switch.status_accionador_control()):
                 self.H6R.off()
                 print("SEGURO ACTIVO PAUSA ABRIENDO PUERTA 2")
                 tiempo_pausa = time.time()
                 while True:
-                    if self.armado_mueble_switch.status_seguro() is False:
+                    if (self.armado_mueble_switch.verificarPausa()):
                         time.sleep(2)
                         self.H6R.on()
+                        print("PUERTA 2 ABRIENDO")
                         tiempo_adicional = self.cronometro(tiempo_pausa)
                         break
             if (self.cronometro(tiempo) > (self.H6R_tiempo_definido + tiempo_adicional)):
@@ -207,29 +246,32 @@ class Armado_mueble(object):
                 break
 
     def puerta2_cerrar(self):
+        self.H6L.off()
         tiempo = time.time()
         tiempo_adicional = 0
         while True:
             if (self.armado_mueble_switch.status_2H()):
-                self.H6L.on()
+                self.arduino.espruino_cmd('f').strip()
             if (self.armado_mueble_switch.status_1H()):
                 time.sleep(self.delay_puerta_cierre_B)
-                self.H6L.off()
+                self.arduino.espruino_cmd('g').strip()
                 print("PUERTA 2 CERRAR")
                 return True
                 break
-            if (self.armado_mueble_switch.status_seguro()):
-                self.H6L.off()
+            if (self.armado_mueble_switch.status_seguro() or self.armado_mueble_switch.status_accionador() or self.armado_mueble_switch.status_accionador_control()):
+                self.arduino.espruino_cmd('g').strip()
+                time.sleep(2)
                 print("SEGURO ACTIVO PAUSA CERRAR PUERTA 2")
                 tiempo_pausa = time.time()
                 while True:
-                    if self.armado_mueble_switch.status_seguro() is False:
+                    if (self.armado_mueble_switch.verificarPausa()):
                         time.sleep(2)
-                        self.H6L.on()
+                        self.arduino.espruino_cmd('f').strip()
+                        print("PUERTA 2 CERRANDO")
                         tiempo_adicional = self.cronometro(tiempo_pausa)
                         break
             if (self.cronometro(tiempo) > (self.H6L_tiempo_definido + tiempo_adicional)):
-                self.H6L.off()
+                self.arduino.espruino_cmd('g').strip()
                 print("TIEMPO ESPERA AGOTADO")
                 return False
                 break
@@ -245,14 +287,15 @@ class Armado_mueble(object):
                 print("PUERTA 2 GUARDAR")
                 return True
                 break
-            if (self.armado_mueble_switch.status_seguro()):
+            if (self.armado_mueble_switch.status_seguro() or self.armado_mueble_switch.status_accionador() or self.armado_mueble_switch.status_accionador_control()):
                 self.H5R.off()
                 print("SEGURO ACTIVO PAUSA GUARDAR PUERTA 2")
                 tiempo_pausa = time.time()
                 while True:
-                    if self.armado_mueble_switch.status_seguro() is False:
+                    if (self.armado_mueble_switch.verificarPausa()):
                         time.sleep(2)
                         self.H5R.on()
+                        print("PUERTA 2 GUARDANDO")
                         tiempo_adicional = self.cronometro(tiempo_pausa)
                         break
             if (self.cronometro(tiempo) > (self.H5R_tiempo_definido + tiempo_adicional)):
@@ -272,14 +315,15 @@ class Armado_mueble(object):
                 print("PUERTA 2 DESPLEGAR")
                 return True
                 break
-            if (self.armado_mueble_switch.status_seguro()):
+            if (self.armado_mueble_switch.status_seguro() or self.armado_mueble_switch.status_accionador() or self.armado_mueble_switch.status_accionador_control()):
                 self.H5L.off()
                 print("SEGURO ACTIVO PAUSA DESPLEGAR PUERTA 2")
                 tiempo_pausa = time.time()
                 while True:
-                    if self.armado_mueble_switch.status_seguro() is False:
+                    if (self.armado_mueble_switch.verificarPausa()):
                         time.sleep(2)
                         self.H5L.on()
+                        print("PUERTA 2 DESPLEGANDO")
                         tiempo_adicional = self.cronometro(tiempo_pausa)
                         break
             if (self.cronometro(tiempo) > (self.H5L_tiempo_definido + tiempo_adicional)):
@@ -300,14 +344,15 @@ class Armado_mueble(object):
                 print("POSTE 1 ABRIR")
                 return True
                 break
-            if (self.armado_mueble_switch.status_seguro()):
+            if (self.armado_mueble_switch.status_seguro() or self.armado_mueble_switch.status_accionador() or self.armado_mueble_switch.status_accionador_control()):
                 self.H1L.off()
                 print("SEGURO ACTIVO PAUSA ABRIR POSTE 1")
                 tiempo_pausa = time.time()
                 while True:
-                    if self.armado_mueble_switch.status_seguro() is False:
+                    if (self.armado_mueble_switch.verificarPausa()):
                         time.sleep(2)
                         self.H1L.on()
+                        print("POSTE 1 ABRIENDO")
                         tiempo_adicional = self.cronometro(tiempo_pausa)
                         break
             if (self.cronometro(tiempo) > (self.H1L_tiempo_definido + tiempo_adicional)):
@@ -328,14 +373,15 @@ class Armado_mueble(object):
                 print("POSTE 1 CERRAR")
                 return True
                 break
-            if (self.armado_mueble_switch.status_seguro()):
+            if (self.armado_mueble_switch.status_seguro() or self.armado_mueble_switch.status_accionador() or self.armado_mueble_switch.status_accionador_control()):
                 self.H1R.off()
                 print("SEGURO ACTIVO PAUSA CERRAR POSTE 1")
                 tiempo_pausa = time.time()
                 while True:
-                    if self.armado_mueble_switch.status_seguro() is False:
+                    if (self.armado_mueble_switch.verificarPausa()):
                         time.sleep(2)
                         self.H1R.on()
+                        print("POSTE 1 CERRANDO")
                         tiempo_adicional = self.cronometro(tiempo_pausa)
                         break
             if (self.cronometro(tiempo) > (self.H1R_tiempo_definido + tiempo_adicional)):
@@ -356,14 +402,15 @@ class Armado_mueble(object):
                 print("POSTE 2 ABRIR")
                 return True
                 break
-            if (self.armado_mueble_switch.status_seguro()):
+            if (self.armado_mueble_switch.status_seguro() or self.armado_mueble_switch.status_accionador() or self.armado_mueble_switch.status_accionador_control()):
                 self.H4L.off()
                 print("SEGURO ACTIVO PAUSA ABRIR POSTE 2")
                 tiempo_pausa = time.time()
                 while True:
-                    if self.armado_mueble_switch.status_seguro() is False:
+                    if (self.armado_mueble_switch.verificarPausa()):
                         time.sleep(2)
                         self.H4L.on()
+                        print("POSTE 2 ABRIENDO")
                         tiempo_adicional = self.cronometro(tiempo_pausa)
                         break
             if (self.cronometro(tiempo) > (self.H4L_tiempo_definido + tiempo_adicional)):
@@ -384,14 +431,15 @@ class Armado_mueble(object):
                 print("POSTE 2 CERRAR")
                 return True
                 break
-            if (self.armado_mueble_switch.status_seguro()):
+            if (self.armado_mueble_switch.status_seguro() or self.armado_mueble_switch.status_accionador() or self.armado_mueble_switch.status_accionador_control()):
                 self.H4R.off()
                 print("SEGURO ACTIVO PAUSA CERRAR POSTE 2")
                 tiempo_pausa = time.time()
                 while True:
-                    if self.armado_mueble_switch.status_seguro() is False:
+                    if (self.armado_mueble_switch.verificarPausa()):
                         time.sleep(2)
                         self.H4R.on()
+                        print("POSTE 2 CERRANDO")
                         tiempo_adicional = self.cronometro(tiempo_pausa)
                         break
             if (self.cronometro(tiempo) > (self.H4R_tiempo_definido + tiempo_adicional)):

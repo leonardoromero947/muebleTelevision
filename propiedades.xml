@@ -9,5 +9,6 @@
         <cerrado>True</cerrado>
         <abierto>False</abierto>
         <pruebas>False</pruebas>
+        <seguro>True</seguro>
     </propiedades>
 </data>
