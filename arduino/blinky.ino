@@ -2,6 +2,8 @@
 
 VarSpeedServo motorA;
 VarSpeedServo motorB;
+int motor_puertab = 4;
+int h3l = 5;
 int boton2A = 8;
 int boton2D = 9;
 int boton2E = 10;
@@ -16,6 +18,8 @@ void setup () {
    pinMode(boton2H,INPUT);
    pinMode(boton2E,INPUT);
    pinMode(botonI0,INPUT);
+   pinMode(motor_puertab,OUTPUT);
+   pinMode(h3l,OUTPUT);
    Serial.begin(9600);
 }
 
@@ -74,14 +78,30 @@ void loop () {
          motorB.stop();
       }
        if (c == 'y') {
-         motorA.write(0);
+         motorA.write(180);
          Serial.println(1);
           motorA.stop();
       }
       if(c == 'z'){
-         motorB.write(180);
+         motorB.write(0);
          Serial.println(1);
          motorB.stop();
       }
+       if (c == 'f') {
+            digitalWrite(motor_puertab , HIGH);
+            Serial.println(0);
+         }
+        if (c == 'g') {
+            digitalWrite(motor_puertab , LOW);
+            Serial.println(0);
+         }
+       if (c == 'b') {
+            digitalWrite(h3l , HIGH);
+            Serial.println(0);
+         }
+        if (c == 'c') {
+            digitalWrite(h3l , LOW);
+            Serial.println(0);
+         }
    }
 }

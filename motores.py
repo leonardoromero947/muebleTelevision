@@ -43,66 +43,20 @@ class Motores(object):
     def valida_status_mueble(self):
         self.motores_posicion_mueble.log_activo(self.log_activo)
         self.memoria.leer_xml()
-        if(self.memoria.proceso == 1):
+        if(self.memoria.abierto is True or self.memoria.proceso == 1):
             print("MUEBLE INICIALMENTE CERRADO")
             self.mueble_cerrado_proceso_abrir()
-        if(self.memoria.proceso == 6 or self.memoria.proceso == 7):
-            print("MUEBLE INICIALMENTE ABIERTO")
-            self.mueble_abierto_proceso_cerrar()
-        if(self.memoria.proceso != 6 and self.memoria.proceso != 1 and self.memoria.proceso != 7):
-            print("MUEBLE REGRESANDO DE UN ESTADO INCOMPLETO")
-            if(self.memoria.abierto is True):
-                print("MUEBLE SEGUIR APERTURA")
-                self.mueble_cerrado_proceso_abrir()
-            else:
-                if(self.memoria.cerrado is True):
-                    print("MUEBLE SEGUIR CIERRE")
-                    self.mueble_abierto_proceso_cerrar()
-                else:
-                    self.mueble_cerrado_proceso_abrir()
+        else:
+            if(self.memoria.cerrado is True or self.memoria.proceso == 6 or self.memoria.proceso == 7 or self.memoria.proceso == 14 ):
+                print("MUEBLE INICIALMENTE ABIERTO")
+                self.mueble_abierto_proceso_cerrar()
 
 
     def mueble_cerrado_proceso_abrir(self):
-        while True:
-            print("Modo a = ABRIR LADO A")
-            print("Modo b = ABRIR LADO B")
-            print("Modo c = ABRIR AMBOS LADOS")
-            continuar = raw_input("ABRIR MUEBLE MODO a, b o c")
-            print("Seleccionaste: "+continuar)
-            if continuar in ('a', 'A'):
-                self.abrir_solo_puerta_a()
-                break;
-            else:
-                if continuar in ('b', 'B'):
-                    self.abrir_solo_puerta_b()
-                    break;
-                else:
-                    if continuar in ('c', 'C'):
-                        self.abrir_mueble_completo()
-                        break;
-                    else:
-                        print("OPCION INVALIDA " + continuar)
+        self.abrir_mueble_completo()
 
     def mueble_abierto_proceso_cerrar(self):
-        while True:
-            print("Modo a = CEERAR LADO A")
-            print("Modo b = CERRAR LADO B")
-            print("Modo c = CERRAR AMBOS LADOS")
-            continuar = raw_input("CERRAR MUEBLE MODO a, b o c")
-            print("Seleccionaste: "+continuar)
-            if continuar in ('a', 'A'):
-                self.cerrar_solo_puerta_a()
-                break;
-            else:
-                if continuar in ('b', 'B'):
-                    self.cerrar_solo_puerta_b()
-                    break;
-                else:
-                    if continuar in ('c', 'C'):
-                        self.cerrar_mueble_completo()
-                        break;
-                    else:
-                        print("OPCION INVALIDA " + continuar)
+        self.cerrar_mueble_completo()
 
     def abrir_solo_puerta_a(self):
         status_mueble = self.motores_posicion_mueble.consultar_status_mueble("A")
@@ -111,13 +65,13 @@ class Motores(object):
             self.error_fatal()
         if (status_mueble == 1):
             self.memoria.insertar_estados_finales_xml(1)
-            self.armar.poste1_abrir()
+            self.armar.poste1_abrir(False)
             status_mueble = self.valida_continuar("A")
         if (status_mueble == 3):
-            self.armar.puerta1_abrir()
+            self.armar.puerta1_abrir(False)
             status_mueble = self.valida_continuar("A")
         if (status_mueble == 4):
-            self.armar.puerta1_guardar()
+            self.armar.puerta1_guardar(False)
             status_mueble = self.valida_continuar("A")
         if (status_mueble == 6):
             status_mueble = self.valida_continuar("A")
@@ -132,13 +86,13 @@ class Motores(object):
         if (status_mueble == 1):
             self.memoria.insertar_estados_finales_xml(1)
             status_mueble = self.valida_continuar("B")
-            self.armar.poste2_abrir()
+            self.armar.poste2_abrir(False)
             status_mueble = self.valida_continuar("B")
         if (status_mueble == 3):
-            self.armar.puerta2_abrir()
+            self.armar.puerta2_abrir(False)
             status_mueble = self.valida_continuar("B")
         if (status_mueble == 5):
-            self.armar.puerta2_guardar()
+            self.armar.puerta2_guardar(False)
             status_mueble = self.valida_continuar("B")
         if (status_mueble == 7):
             status_mueble = self.valida_continuar("B")
@@ -152,24 +106,43 @@ class Motores(object):
             self.error_fatal()
         if (status_mueble == 1):
             self.memoria.insertar_estados_finales_xml(1)
-            self.armar.poste1_abrir()
+            self.armar.poste1_abrir(False)
             status_mueble = self.valida_continuar("C")
         if (status_mueble == 2):
-            self.armar.poste2_abrir()
+            self.memoria.insertar_estados_finales_xml(1)
+            self.armar.poste1_abrir(True)
             status_mueble = self.valida_continuar("C")
         if (status_mueble == 3):
-            self.armar.puerta1_abrir()
+            self.armar.poste2_abrir(False)
             status_mueble = self.valida_continuar("C")
         if (status_mueble == 4):
-            self.armar.puerta2_abrir()
+            self.armar.poste2_abrir(True)
             status_mueble = self.valida_continuar("C")
         if (status_mueble == 5):
-            self.armar.puerta1_guardar()
+            self.armar.puerta1_abrir(False)
             status_mueble = self.valida_continuar("C")
         if (status_mueble == 6):
-            self.armar.puerta2_guardar()
+            self.armar.puerta1_abrir(True)
             status_mueble = self.valida_continuar("C")
         if (status_mueble == 7):
+            self.armar.puerta2_abrir(False)
+            status_mueble = self.valida_continuar("C")
+        if (status_mueble == 8):
+            self.armar.puerta2_abrir(True)
+            status_mueble = self.valida_continuar("C")
+        if (status_mueble == 9):
+            self.armar.puerta1_guardar(False)
+            status_mueble = self.valida_continuar("C")
+        if (status_mueble == 10):
+            self.armar.puerta1_guardar(True)
+            status_mueble = self.valida_continuar("C")
+        if (status_mueble == 11):
+            self.armar.puerta2_guardar(False)
+            status_mueble = self.valida_continuar("C")
+        if (status_mueble == 12):
+            self.armar.puerta2_guardar(True)
+            status_mueble = self.valida_continuar("C")
+        if (status_mueble == 14):
             status_mueble = self.valida_continuar("C")
             self.memoria.insertar_estados_finales_xml(3)
             print("MUEBLE COMPLETAMENTE ABIERTO")
@@ -181,13 +154,13 @@ class Motores(object):
             self.error_fatal()
         if (status_mueble == 6):
             self.memoria.insertar_estados_finales_xml(2)
-            self.armar.puerta1_desplegar()
+            self.armar.puerta1_desplegar(False)
             status_mueble = self.valida_continuar("A")
         if (status_mueble == 4):
-            self.armar.puerta1_cerrar()
+            self.armar.puerta1_cerrar(False)
             status_mueble = self.valida_continuar("A")
         if (status_mueble == 3):
-            self.armar.poste1_cerrar()
+            self.armar.poste1_cerrar(False)
             status_mueble = self.valida_continuar("A")
         if (status_mueble == 1):
             status_mueble = self.valida_continuar("A")
@@ -201,13 +174,13 @@ class Motores(object):
             self.error_fatal()
         if (status_mueble == 7):
             self.memoria.insertar_estados_finales_xml(2)
-            self.armar.puerta2_desplegar()
+            self.armar.puerta2_desplegar(False)
             status_mueble = self.valida_continuar("B")
         if (status_mueble == 5):
-            self.armar.puerta2_cerrar()
+            self.armar.puerta2_cerrar(False)
             status_mueble = self.valida_continuar("B")
         if (status_mueble == 3):
-            self.armar.poste2_cerrar()
+            self.armar.poste2_cerrar(False)
             status_mueble = self.valida_continuar("B")
         if (status_mueble == 1):
             status_mueble = self.valida_continuar("B")
@@ -219,24 +192,43 @@ class Motores(object):
         if (status_mueble == 0):
             self.memoria.insertar_estados_finales_xml(3)
             self.error_fatal()
-        if (status_mueble == 7):
+        if (status_mueble == 14):
             self.memoria.insertar_estados_finales_xml(2)
-            self.armar.puerta2_desplegar()
+            self.armar.puerta2_desplegar(False)
+            status_mueble = self.valida_continuar("C")
+        if (status_mueble == 12):
+            self.memoria.insertar_estados_finales_xml(2)
+            self.armar.puerta2_desplegar(True)
+            status_mueble = self.valida_continuar("C")
+        if (status_mueble == 11):
+            self.armar.puerta1_desplegar(False)
+            status_mueble = self.valida_continuar("C")
+        if (status_mueble == 10):
+            self.armar.puerta1_desplegar(True)
+            status_mueble = self.valida_continuar("C")
+        if (status_mueble == 9):
+            self.armar.puerta2_cerrar(False)
+            status_mueble = self.valida_continuar("C")
+        if (status_mueble == 8):
+            self.armar.puerta2_cerrar(True)
+            status_mueble = self.valida_continuar("C")
+        if (status_mueble == 7):
+            self.armar.puerta1_cerrar(False)
             status_mueble = self.valida_continuar("C")
         if (status_mueble == 6):
-            self.armar.puerta1_desplegar()
+            self.armar.puerta1_cerrar(True)
             status_mueble = self.valida_continuar("C")
         if (status_mueble == 5):
-            self.armar.puerta2_cerrar()
+            self.armar.poste2_cerrar(False)
             status_mueble = self.valida_continuar("C")
         if (status_mueble == 4):
-            self.armar.puerta1_cerrar()
+            self.armar.poste2_cerrar(True)
             status_mueble = self.valida_continuar("C")
         if (status_mueble == 3):
-            self.armar.poste2_cerrar()
+            self.armar.poste1_cerrar(False)
             status_mueble = self.valida_continuar("C")
         if (status_mueble == 2):
-            self.armar.poste1_cerrar()
+            self.armar.poste1_cerrar(True)
             status_mueble = self.valida_continuar("C")
         if (status_mueble == 1):
             status_mueble = self.valida_continuar("C")
@@ -268,4 +260,10 @@ class Motores(object):
         self.buzzer.off()
         self.buzzer.on()
         sleep(1)
+        self.buzzer.off()
+
+    def sonido_inicial(self):
+        print("EN FUNCIONAMIENTO")
+        self.buzzer.on()
+        sleep(2)
         self.buzzer.off()

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<data>
+    <propiedades name="tiempos">
+        <abrirposte1>0.0</abrirposte1>
+        <cerrarposte1>0.0</cerrarposte1>
+        <abrirpuerta1>0.0</abrirpuerta1>
+        <cerrarpuerta1>0.0</cerrarpuerta1>
+        <guardarpuerta1>0.0</guardarpuerta1>
+        <desplegarpuerta1>0.0</desplegarpuerta1>
+        <abrirposte2>0.0</abrirposte2>
+        <cerrarposte2>0.0</cerrarposte2>
+        <abrirpuerta2>0.0</abrirpuerta2>
+        <cerrarpuerta2>0.0</cerrarpuerta2>
+        <guardarpuerta2>0.0</guardarpuerta2>
+        <desplegarpuerta2>0.0</desplegarpuerta2>
+    </propiedades>
+</data>

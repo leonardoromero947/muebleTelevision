@@ -1,0 +1,16 @@
+<data>
+    <propiedades name="tiempos">
+        <abrirposte1 update="yes">4.19</abrirposte1>
+        <cerrarposte1 update="yes">4.11</cerrarposte1>
+        <abrirpuerta1 update="yes">9.25</abrirpuerta1>
+        <cerrarpuerta1 update="yes">15.24</cerrarpuerta1>
+        <guardarpuerta1 update="yes">46.58</guardarpuerta1>
+        <desplegarpuerta1 update="yes">46.58</desplegarpuerta1>
+        <abrirposte2 update="yes">3.98</abrirposte2>
+        <cerrarposte2 update="yes">4.62</cerrarposte2>
+        <abrirpuerta2 update="yes">13.38</abrirpuerta2>
+        <cerrarpuerta2 update="yes">9.91</cerrarpuerta2>
+        <guardarpuerta2 update="yes">45.88</guardarpuerta2>
+        <desplegarpuerta2 update="yes">43.97</desplegarpuerta2>
+    </propiedades>
+</data>

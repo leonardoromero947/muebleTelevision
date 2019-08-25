@@ -1,12 +1,19 @@
 #DOCUMENTO INICIAL DE FUNCIONAMIENTO
 import ejecutor as EJT
-import time
-import seguro as SEG
+import motores as MTS
+import raspardino_response as RDNR
+import armado_mueble as ARM
+
 
 class Main(object):
+    sonido = MTS.Motores()
     switch = EJT.Ejecutor()
-    seguros = SEG.Seguro_acciones()
+    arduino = RDNR.Raspardino()
+    armado = ARM.Armado_mueble()
+
 
 m = Main()
+m.sonido.sonido_inicial()
 m.switch.iniciar()
-
+#m.armado.poste1_cerrar(True)
+#m.armado.puerta1_abrir(True)

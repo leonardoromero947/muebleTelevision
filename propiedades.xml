@@ -1,14 +1,13 @@
-<?xml version="1.0"?>
 <data>
     <propiedades name="mueble">
         <instructivo>False</instructivo>
         <ejemplo>False</ejemplo>
-        <log>False</log>
+        <log>True</log>
         <visor>False</visor>
-        <proceso>20</proceso>
-        <cerrado>True</cerrado>
-        <abierto>False</abierto>
+        <proceso update="yes">0</proceso>
+        <cerrado update="yes">False</cerrado>
+        <abierto update="yes">True</abierto>
         <pruebas>False</pruebas>
-        <seguro>True</seguro>
+        <seguro update="yes">True</seguro>
     </propiedades>
 </data>
